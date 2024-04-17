@@ -1,0 +1,47 @@
+
+.dark {
+    --backgroundColor: #212121;
+    --foregroundColor: #2f2f2f;
+    --textColor: #fff;
+
+    --borderColor: #fff;
+
+    --buttonColor: #2f4f4f;
+    --buttonHoverColor: #162424;
+    --buttonTextColor: #fff;
+
+    --inputBackgroundColor: #f0f0f0;
+    --inputHoverColor: #c5c5c5;
+}
+
+.light {
+    --backgroundColor: #f0f0f0;
+    --textColor: #000;
+    
+    --foregroundColor: #bdbdbd;
+
+    --borderColor: #000;
+
+    --buttonColor: #2f4f4f;
+    --buttonHoverColor: #162424;
+    --buttonTextColor: #fff;
+
+    --inputBackgroundColor: #f0f0f0;
+    --inputHoverColor: #c5c5c5;
+}
+
+.optionsMenu {
+    position: absolute;
+
+    top: 2rem;
+    right: 2rem;
+}
+
+.themeButton {
+    background: var(--buttonColor);
+    color: var(--buttonTextColor);
+
+    padding: .5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}

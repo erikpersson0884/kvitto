@@ -10,7 +10,7 @@ body {
 }
 
 .main {
-    background: var(--lighterBackgroundColor);
+    background: var(--foregroundColor);
 
     display: flex;  
     flex-direction: column;
@@ -65,9 +65,6 @@ body {
 
     width: 100%;
 }
-.infoDiv>div>label {
-    /* width: 10rem; */
-}
 
 
 .itemPreview {
@@ -112,7 +109,7 @@ body {
 
 
 .removeButton {
-    background: darkred;
+    background: var(--removeButtonColor);
     color: var(--buttonTextColor);
 
     display: flex;
@@ -124,7 +121,7 @@ body {
 }
 
 .removeButton:hover {
-    background: rgb(220, 15, 15);
+    background: var(--removeButtonHoverColor);
 }
 
 .removeButton img, .emptyButton img{
@@ -219,7 +216,7 @@ header {
 
 @media screen {
     .receipts {
-        /* display: none; */
+        display: none;
     }
 }
 

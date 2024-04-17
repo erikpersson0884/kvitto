@@ -28,30 +28,45 @@ body {
     height: 2rem;
 }
 
-
-.infoDiv {
+.main header {
     background: grey;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: calc(100% - 8rem);
+    padding: 2rem 4rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.createKvittoButton {
+    width: max-content;
+    height: 7rem;
+    padding: 1rem;
+}
+
+.infoDiv {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-
-    width: 100%;
-    padding: 2rem 0;
-    margin-bottom: 1rem;
-    border-radius: 1rem 1rem 0 0;
+    width: max-content
 }
 
 .infoDiv>div {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     gap: 1rem;
 
     width: 100%;
-
+}
+.infoDiv>div>label {
+    /* width: 10rem; */
 }
 
 
@@ -60,10 +75,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
 
     width: 80%;
-
 }
 
 .itemPreview>div, .boughtItems>div {
@@ -73,7 +86,7 @@ body {
     align-items: center;
 
     width: 100%;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--borderColor);
 }
 
@@ -99,7 +112,7 @@ body {
 
 
 .removeButton {
-    background: var(--buttonColor);
+    background: darkred;
     color: var(--buttonTextColor);
 
     display: flex;
@@ -111,7 +124,7 @@ body {
 }
 
 .removeButton:hover {
-    background: var(--buttonHoverColor);
+    background: rgb(220, 15, 15);
 }
 
 .removeButton img, .emptyButton img{
@@ -150,12 +163,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
-.createKvittoButton {
-    background: var(--buttonColor);
 
-    padding: 1rem;
-    margin-top: 2rem;
-}
 
 
 
@@ -199,8 +207,12 @@ header {
     gap: 4rem;
 
     width: 100%;
-    border-top: 1px dashed var(--borderColor);
+    padding: .5rem 0;
     border-bottom: 1px dashed var(--borderColor);
+}
+
+.kvittoFooter>*:first-child {
+    border-top: 1px dashed var(--borderColor);
 }
 
 
@@ -220,7 +232,7 @@ header {
         --buttonHoverColor: white;
         --borderColor: black;
     }
-    .infoDiv, .itemPreview, .addItemDiv, .createKvittoButton{
+    .main{
         display: none;
     }
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Kvitto</title>
+    <link rel="icon" href="img/receipt.svg" type="image/png">
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -12,37 +13,43 @@
 <body>
 
     <div class="main">
-        <div class="infoDiv">
-            <div>
-                <label for="receiptName">Namn:</label>
-                <input type="text" id="receiptName" class="darkInput" placeholder="Namn">
-            </div>  
-            <div>
-                <label for="receiptDate">Datum:</label>
-                <input type="text" id="receiptDate" class="darkInput" placeholder="Datum">
+        <header>
+            <div class="infoDiv">
+                <div>
+                    <label for="receiptName">Kvittonamn:</label>
+                    <input type="text" id="receiptName" class="darkInput" placeholder="Namn">
+                </div>  
+                <div>
+                    <label for="receiptDate">Datum:</label>
+                    <input type="text" id="receiptDate" class="darkInput" placeholder="Datum">
+                </div>
+                <div>
+                    <label for="receiptMoms">Moms:</label>
+                    <input type="text" id="receiptMoms" class="darkInput" placeholder="Moms">
+                </div>
             </div>
-            <div>
-                <label for="receiptMoms">Moms:</label>
-                <input type="text" id="receiptMoms" class="darkInput" placeholder="Moms">
+            
+            <div id="createKvittoButton" class="createKvittoButton button">
+                CREATE KVITTO
             </div>
-        </div>
+        </header>
+
+
 
         <div id="itemPreview" class="itemPreview"></div>
 
 
         <div id="addItemDiv" class="addItemDiv">
             <input type="text" id="addItemName" class="darkInput" placeholder="Item name">
-            <input type="text" id="addItemPrice" class="darkInput" placeholder="Price">
-            <input type="text" id="addItemAmount" class="darkInput" placeholder="Amount">
+            <input type="number" id="addItemPrice" class="darkInput" placeholder="Price">
+            <input type="number" id="addItemAmount" class="darkInput" placeholder="Amount">
 
             <div id="addItemButton" class="addItemButton button">Add item</div>
         </div>
     </div>
 
 
-    <div id="createKvittoButton" class="createKvittoButton button">
-        CREATE KVITTO
-    </div>
+
 
     <div id="receipts" class="receipts"></div>
     

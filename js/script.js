@@ -55,13 +55,18 @@ function addItem() {
         id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
         name: addItemName.value, 
         price: parseFloat(addItemPrice.value),
-        amount: addItemAmount.value
+        amount: parseFloat(addItemAmount.value)
     }
 
     items.push(newItem)
     localStorage.setItem("items", JSON.stringify(items));
 
     updateItemPreview();
+
+    addItemName.value = '';
+    addItemPrice.value = '';
+    addItemAmount.value = '';
+
 }
 
 
@@ -107,7 +112,7 @@ function updateItemPreview() {
 
 function createEmptyButton() {
     const emptyButton = document.createElement('div');
-    emptyButton.classList.add('emptyButton', "button");
+    emptyButton.classList.add('removeButton', "button");
 
     const emptyImage = document.createElement('img');
     emptyImage.src = 'img/remove.svg';
@@ -169,8 +174,8 @@ function createKvitto() {
     const boughtItemsHeader = document.createElement("div");
     boughtItemsHeader.classList.add("boughtItemsHeader");
     boughtItemsHeader.innerHTML = `
-        <h2>Item</h2>
-        <h2>Amount</h2>
+        <h2>Vara</h2>
+        <h2>Antal</h2>
         <h2>Styckpris</h2>
         <h2>Totalt</h2>
     `;
@@ -192,11 +197,12 @@ function createKvitto() {
     });
 
     kvitto.appendChild(boughtItems);
+    let totalPrice = items.reduce((accumulator, item) => accumulator + (item.price * item.amount), 0);
 
     const total = document.createElement('div');
     total.classList.add("total");
     total.innerHTML = `
-        <p>Total: ${items.reduce((acc, item) => acc + item.price * item.amount, 0)} kr</p>
+        <p>Totalt: ${totalPrice.toFixed(2)} kr</p>
     `;
 
     kvitto.appendChild(total);

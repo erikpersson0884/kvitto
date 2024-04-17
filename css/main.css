@@ -1,0 +1,233 @@
+
+.darkInput {
+    background: var(--lighterBackgroundColor);
+}
+
+
+body {
+    justify-content: flex-start;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.main {
+    background: var(--lighterBackgroundColor);
+
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    border-radius: 1rem;
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.main input {
+    background: var(--backgroundColor) !important;
+    height: 2rem;
+}
+
+
+.infoDiv {
+    background: grey;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    width: 100%;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.infoDiv>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 100%;
+
+}
+
+
+.itemPreview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    width: 80%;
+
+}
+
+.itemPreview>div, .boughtItems>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 100%;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--borderColor);
+}
+
+.itemPreview .emptyButton {
+    background: darkred;
+}
+
+
+
+.itemPreview>div>*, .boughtItems>div>* {
+    flex: 1;
+    width: auto;
+    text-align: left;
+}
+
+.boughtItems>div>*:last-child{
+    text-align: right;
+}
+
+.itemPreview h2 {
+    width: min-content;
+}
+
+
+.removeButton {
+    background: var(--buttonColor);
+    color: var(--buttonTextColor);
+
+    display: flex;
+    flex-direction: row;
+
+    padding: .5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.removeButton:hover {
+    background: var(--buttonHoverColor);
+}
+
+.removeButton img, .emptyButton img{
+    filter: invert(1);
+    margin-right: .5rem;
+}
+
+
+
+.addItemDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+
+    width: 80%;
+}
+
+.addItemDiv>* {
+    width: 20%;
+}
+
+.addItemDiv input {
+    background: var(--backgroundColor);
+
+    display: flex;
+    justify-content: center;
+}
+
+
+.addItemDiv button {
+    background: var(--buttonColor);
+    color: var(--buttonTextColor);
+
+    padding: .5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.createKvittoButton {
+    background: var(--buttonColor);
+
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+
+
+.kvitto {
+    background: var(--BackgroundColor);
+
+    width: 60vw;
+    padding: 1rem;
+    margin-top: 5rem;
+}
+
+
+header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--borderColor);
+}
+
+.kvitto h1 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.total {
+    margin-top: 1rem;
+    text-align: end;
+}
+
+
+.kvittoFooter {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 4rem;
+}
+
+.kvittoFooter>* {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4rem;
+
+    width: 100%;
+    border-top: 1px dashed var(--borderColor);
+    border-bottom: 1px dashed var(--borderColor);
+}
+
+
+
+@media screen {
+    .receipts {
+        /* display: none; */
+    }
+}
+
+@media print {
+    :root {
+        --backgroundColor: white;
+        --lighterBackgroundColor: white;
+        --buttonColor: white;
+        --buttonTextColor: black;
+        --buttonHoverColor: white;
+        --borderColor: black;
+    }
+    .infoDiv, .itemPreview, .addItemDiv, .createKvittoButton{
+        display: none;
+    }
+
+    .receipts {
+        color: #000;
+        font-family: Helvetica, sans-serif !important;
+    }
+
+  
+}

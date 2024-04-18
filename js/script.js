@@ -1,4 +1,3 @@
-
 const receiptName = document.getElementById("receiptName");
 const receiptDate = document.getElementById("receiptDate");
 const receiptMoms = document.getElementById("receiptMoms");
@@ -45,9 +44,6 @@ receiptMoms.oninput = () => {
     localStorage.setItem("receiptMoms", receiptMoms.value);
 }
 
-
-
-
 addItemButton.onclick = addItem;
 
 function addItem() {
@@ -77,14 +73,21 @@ function updateItemPreview() {
     const itemsPreviewHeader = document.createElement("div");
     itemsPreviewHeader.classList.add("itemsPreviewHeader");
 
-    const emptyAllButton = createEmptyButton();
     itemsPreviewHeader.innerHTML = `
-        <h2>Vara</h2>
-        <h2>Antal</h2>
-        <h2>Pris</h2>
-        <h2>Totalt</h2>
-    `;
+        <h2 class="translateText" data-english="Item" data-swedish="Vara">Item</h2>
+        <h2 class="translateText" data-english="Amount" data-swedish="Antal">Amount</h2>
+        <h2 class="translateText" data-english="Price" data-swedish="Pris">Price</h2>
+        <h2 class="translateText" data-english="Total" data-swedish="Totalt">Total</h2>
+    `; 
+    
+
+    const emptyAllButton = createRemoveButton("Empty all", "Töm alla", () => {
+        items = [];
+        localStorage.setItem("items", JSON.stringify(items));
+        updateItemPreview();
+    });
     itemsPreviewHeader.appendChild(emptyAllButton);
+
 
     itemPreview.appendChild(itemsPreviewHeader);
 
@@ -99,7 +102,7 @@ function updateItemPreview() {
             <p>${(item.price * item.amount).toFixed(2)}</p>
         `;
 
-        const removeButton = createRemoveButton('Remove', () => {
+        const removeButton = createRemoveButton('Remove', 'Ta bort', () => {
             items = items.filter(i => i.id !== item.id);
             localStorage.setItem("items", JSON.stringify(items));
             updateItemPreview();
@@ -110,28 +113,7 @@ function updateItemPreview() {
     });
 }
 
-function createEmptyButton() {
-    const emptyButton = document.createElement('div');
-    emptyButton.classList.add('removeButton', "button");
-
-    const emptyImage = document.createElement('img');
-    emptyImage.src = 'img/remove.svg';
-    emptyButton.appendChild(emptyImage);
-
-    const emptyText = document.createElement('p');
-    emptyText.innerHTML = 'Empty all';
-    emptyButton.appendChild(emptyText);
-
-    emptyButton.onclick = () => {
-        items = [];
-        localStorage.setItem("items", JSON.stringify(items));
-        updateItemPreview();
-    }
-
-    return emptyButton;
-}
-
-function createRemoveButton(text, func) {
+function createRemoveButton(englist_text, swedish_text, func) {
     const removeButton = document.createElement('div');
     removeButton.classList.add('removeButton');
 
@@ -140,7 +122,10 @@ function createRemoveButton(text, func) {
     removeButton.appendChild(removeImage);
 
     const removeText = document.createElement('p');
-    removeText.innerHTML = text;
+    removeText.classList.add('translateText');
+    removeText.setAttribute('data-english', englist_text);
+    removeText.setAttribute('data-swedish', swedish_text);
+
     removeButton.appendChild(removeText);
 
     removeButton.onclick = () => {
@@ -150,11 +135,7 @@ function createRemoveButton(text, func) {
     return removeButton;
 }
 
-
-
 createKvittoButton.onclick = createKvitto;
-
-
 
 function createKvitto() {
     const kvitto = document.createElement('div');
@@ -172,25 +153,28 @@ function createKvitto() {
     boughtItems.classList.add("boughtItems");
 
     const boughtItemsHeader = document.createElement("div");
-    boughtItemsHeader.classList.add("boughtItemsHeader");
+    boughtItemsHeader.classList.add("boughtItemsHeader", "translateText");
+
     boughtItemsHeader.innerHTML = `
-        <h2>Vara</h2>
-        <h2>Antal</h2>
-        <h2>Styckpris</h2>
-        <h2>Totalt</h2>
+        <h2 class="translateText" data-english="Item" data-swedish="Vara">Item</h2>
+        <h2 class="translateText" data-english="Amount" data-swedish="Antal">Amount</h2>
+        <h2 class="translateText" data-english="Price" data-swedish="Styckpris">Price</h2>
+        <h2 class="translateText" data-english="Total" data-swedish="Totalt">Total</h2>
     `;
+
+
 
     boughtItems.appendChild(boughtItemsHeader);
 
     items.forEach(item => {
         const newItem = document.createElement('div');
-        newItem.classList.add('item');
+        newItem.classList.add('item', "translateText");
         
         newItem.innerHTML = `
-            <p>${item.name}</p>
-            <p>${item.amount}</p>
-            <p>${(item.price * 1).toFixed(2)}</p>
-            <p>${(item.price * item.amount).toFixed(2)}</p>
+            <p class="translateText" data-english="${item.name}" data-swedish="${item.name}"></p>
+            <p class="translateText" data-english="${item.amount}" data-swedish="${item.amount}"></p>
+            <p class="translateText" data-english="${(item.price * 1).toFixed(2)}" data-swedish="${(item.price * 1).toFixed(2)}"></p>
+            <p class="translateText" data-english="${(item.price * item.amount).toFixed(2)}" data-swedish="${(item.price * item.amount).toFixed(2)}"></p>
         `;
 
         boughtItems.appendChild(newItem);
@@ -202,8 +186,10 @@ function createKvitto() {
     const total = document.createElement('div');
     total.classList.add("total");
     total.innerHTML = `
-        <p>Totalt: ${totalPrice.toFixed(2)} kr</p>
+        <p class="translateText" data-english="Total:" data-swedish="Totalt:">Total:</p>
+        <p>${totalPrice.toFixed(2)} kr</p>
     `;
+
 
     kvitto.appendChild(total);
 
@@ -214,6 +200,7 @@ function createKvitto() {
     document.getElementById("receipts").innerHTML = '';
     document.getElementById("receipts").appendChild(kvitto);
 
+    setLanguage(localStorage.getItem('language'));
     window.print();
 }
 
@@ -225,20 +212,20 @@ function createKvittoFooter() {
     kvittoFooter.classList.add("kvittoFooter");
 
     const date = document.createElement('div');
+
     date.innerHTML = `
-        <p>Datum:</p>
+        <p class="translateText" data-english="Date:" data-swedish="Datum:">Date:</p>
         <p>${receiptDate.value}</p>
     `;
+
     kvittoFooter.appendChild(date);
 
     moms = document.createElement('div');
     moms.innerHTML = `
-        <p>Moms:</p>
+        <p class="translateText" data-english="VAT:" data-swedish="Moms:"></p>
         <p>${receiptMoms.value}</p>
     `;
     kvittoFooter.appendChild(moms);
 
     return kvittoFooter;
 }
-
-

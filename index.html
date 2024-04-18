@@ -11,11 +11,16 @@
 
     <script src="js/script.js" defer></script>
     <script src="js/theme.js" defer></script>
+    <script src="js/language.js" defer></script>
 </head>
 <body>
     <div id="optionsMenu" class="optionsMenu">
         <div id="themeButton" class="themeButton">
             <img src="img/dark.svg" id="themeButtonImg" class="themeButtonImg" alt="themeButton">
+        </div>
+
+        <div id="languageButton" class="languageButton button">
+            <img src="img/swe.svg" id="languageButtonImg" class="languageButtonImg" alt="languageButton" height="40">
         </div>
     </div>
 
@@ -23,20 +28,20 @@
         <header>
             <div class="infoDiv">
                 <div>
-                    <label for="receiptName">Kvittonamn:</label>
-                    <input type="text" id="receiptName" class="darkInput" placeholder="Namn">
+                    <label for="receiptName" class="translateText" data-english="Receipt name:" data-swedish="Kvittonamn:">Kvittonamn:</label>
+                    <input type="text" id="receiptName" class="darkInput translateInput" placeholder="Namn" data-english="Name" data-swedish="Namn">
                 </div>  
                 <div>
-                    <label for="receiptDate">Datum:</label>
-                    <input type="text" id="receiptDate" class="darkInput" placeholder="Datum">
+                    <label for="receiptDate" class="translateText" data-english="Date:" data-swedish="Datum:">Datum:</label>
+                    <input type="text" id="receiptDate" class="darkInput translateInput" placeholder="Datum" data-english="Date" data-swedish="Datum">
                 </div>
                 <div>
-                    <label for="receiptMoms">Moms:</label>
-                    <input type="text" id="receiptMoms" class="darkInput" placeholder="Moms">
+                    <label for="receiptMoms" class="translateText" data-english="Moms:" data-swedish="Moms:">Moms:</label>
+                    <input type="text" id="receiptMoms" class="darkInput translateInput" data-english="Moms" data-swedish="Moms" placeholder="Moms">
                 </div>
             </div>
             
-            <div id="createKvittoButton" class="createKvittoButton button">
+            <div id="createKvittoButton" class="createKvittoButton button translateText" data-english="Create receipt" data-swedish="Skapa kvitto">
                 CREATE KVITTO
             </div>
         </header>
@@ -47,11 +52,11 @@
 
 
         <div id="addItemDiv" class="addItemDiv">
-            <input type="text" id="addItemName" class="darkInput" placeholder="Item name">
-            <input type="number" id="addItemPrice" class="darkInput" placeholder="Price">
-            <input type="number" id="addItemAmount" class="darkInput" placeholder="Amount">
+            <input type="text" id="addItemName" class="darkInput translateInput" data-english="Item name" data-swedish="Namn" placeholder="Item name">
+            <input type="number" id="addItemPrice" class="darkInput translateInput" data-english="Price" data-swedish="Pris" placeholder="Price">
+            <input type="number" id="addItemAmount" class="darkInput translateInput" data-english="Amount" data-swedish="Summa" placeholder="Amount">
 
-            <div id="addItemButton" class="addItemButton button">Add item</div>
+            <div id="addItemButton" class="addItemButton button translateText" data-english="Add item" data-swedish="Lägg till">Add item</div>
         </div>
     </div>
 

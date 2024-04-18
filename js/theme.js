@@ -8,6 +8,7 @@ let currentTheme;
 if (localStorage.getItem('theme')){
     currentTheme = localStorage.getItem('theme');
     document.body.classList.add(currentTheme);
+    themeButtonImg.src = `./img/${currentTheme}.svg`;
 }
 
 themeButton.onclick = () => {

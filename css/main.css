@@ -9,6 +9,16 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+label {
+    white-space: nowrap;
+}
+
+.optionsMenu {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
 .main {
     background: var(--foregroundColor);
 
@@ -21,6 +31,8 @@ body {
     border-radius: 1rem;
     margin-top: 3rem;
     padding-bottom: 3rem;
+
+    transition: margin-top .25s ease-in-out;
 }
 
 .main input {
@@ -43,6 +55,8 @@ body {
 }
 
 .createKvittoButton {
+    text-transform: uppercase;
+    
     width: max-content;
     height: 7rem;
     padding: 1rem;
@@ -54,7 +68,6 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    width: max-content
 }
 
 .infoDiv>div {
@@ -75,6 +88,7 @@ body {
 
     width: 80%;
 }
+
 
 .itemPreview>div, .boughtItems>div {
     display: flex;
@@ -97,6 +111,10 @@ body {
     flex: 1;
     width: auto;
     text-align: left;
+}
+.boughtItems>div>*:first-child {
+    flex: 2;
+    margin-right: 3rem;
 }
 
 .boughtItems>div>*:last-child{
@@ -165,9 +183,9 @@ body {
 
 
 .kvitto {
-    background: var(--BackgroundColor);
+    background: var(--backgroundColor);
 
-    width: 60vw;
+    width: 80vw;
     padding: 1rem;
     margin-top: 5rem;
 }
@@ -212,7 +230,13 @@ header {
     border-top: 1px dashed var(--borderColor);
 }
 
-
+@media screen and (max-width: 1200px) {
+    .main {
+        margin-top: 8rem;
+        transition: margin-top .25s ease-in-out;
+    }
+    
+}
 
 @media screen {
     .receipts {
@@ -221,19 +245,18 @@ header {
 }
 
 @media print {
-    :root {
+    .main, .optionsMenu{
+        display: none;
+    }
+
+    .receipts {
         --backgroundColor: white;
         --lighterBackgroundColor: white;
         --buttonColor: white;
         --buttonTextColor: black;
         --buttonHoverColor: white;
-        --borderColor: black;
-    }
-    .main{
-        display: none;
-    }
-
-    .receipts {
+        --borderColor: #000;
+        
         color: #000;
         font-family: Helvetica, sans-serif !important;
     }

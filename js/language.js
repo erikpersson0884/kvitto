@@ -7,7 +7,7 @@ let currentLanguage;
 if (localStorage.getItem('language')) {
     currentLanguage = localStorage.getItem('language');
 } else {
-    currentLanguage = 'swe';
+    currentLanguage = 'sv';
 }
 
 setLanguage(currentLanguage);
@@ -19,21 +19,22 @@ languageButton.addEventListener('click', function() {
 
 
 function toggleLanguage() {
-    setLanguage(currentLanguage === 'eng' ? 'swe' : 'eng');
+    setLanguage(currentLanguage === 'en' ? 'sv' : 'en');
 }
 
 function setLanguage(langauge) {
     currentLanguage = langauge;
     localStorage.setItem('language', langauge);
     languageButtonImg.src = `img/${langauge}.svg`;
+    document.documentElement.lang = langauge;
 
     const translateTexts = document.querySelectorAll('.translateText');
     translateTexts.forEach(element => {
         switch (currentLanguage) {
-            case 'eng':
+            case 'en':
                 element.innerHTML = element.getAttribute('data-english');
                 break;
-            case 'swe':
+            case 'sv':
                 element.innerHTML = element.getAttribute('data-swedish');
                 break;
         }
@@ -42,10 +43,10 @@ function setLanguage(langauge) {
     const translateInputs = document.querySelectorAll('.translateInput');
     translateInputs.forEach(element => {
         switch (currentLanguage) {
-            case 'eng':
+            case 'en':
                 element.placeholder = element.getAttribute('data-english');
                 break;
-            case 'swe':
+            case 'sv':
                 element.placeholder = element.getAttribute('data-swedish');
                 break;
         }

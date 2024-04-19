@@ -1,0 +1,15 @@
+{
+    "name": "receiptCreator",
+    "short_name": "receiptCreator",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#212121",
+    "theme_color": "#f0f0f0",
+    "icons": [
+        {
+            "src": "receipt.svg",
+            "sizes": "any",
+            "type": "image/png"
+        }
+    ]
+}

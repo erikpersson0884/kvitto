@@ -42,9 +42,9 @@ body {
     position: relative;
 
     height: auto;
-    min-height: calc(100vh  - 4rem); /* To make space for the footer */
+    min-height: calc(100vh  - 16rem); /* To make space for the footer */
     padding: 0;
-    padding-bottom: 4rem; /* To make space for the footer */
+    padding-bottom: 8rem; /* To make space for the footer */
     margin: 0;
 }
 

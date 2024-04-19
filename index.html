@@ -8,10 +8,24 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
 
     <script src="js/script.js" defer></script>
     <script src="js/theme.js" defer></script>
     <script src="js/language.js" defer></script>
+
+    <script defer>
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('js/service-worker.js').then(function(registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+          });
+        }
+    </script>
+
 </head>
 <body>
     <div id="optionsMenu" class="optionsMenu">
@@ -65,5 +79,17 @@
 
     <div id="receipts" class="receipts"></div>
     
+    <footer class="pageFooter">            
+        Made width
+        <a href="https://chalmers.it/committees/equalit" class="hiddenLink">
+            <img src="img/pixelnhearth.png" class="pixelnhearth" alt="pride flag by göken" height="10">
+        </a>
+        by 
+        <a href="https://github.com/erikpersson0884" class="hiddenLink goken">
+            Göken
+        </a> 
+        <img src="img/goken.png" alt="Gökens mark" height="10">
+
+    </footer>
 </body>
 </html>

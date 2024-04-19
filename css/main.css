@@ -242,10 +242,11 @@ header {
     .receipts {
         display: none;
     }
+
 }
 
 @media print {
-    .main, .optionsMenu{
+    .main, .optionsMenu, .pageFooter {
         display: none;
     }
 

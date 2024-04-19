@@ -1,0 +1,41 @@
+.pageFooter {
+    color: #fff;
+
+    font-size: 1.3rem;
+    font-family: "Kode Mono";
+
+
+    position: absolute;
+    bottom: .4rem;
+
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.pageFooter img {
+    height: 1.5rem;
+    width: auto;
+    
+    vertical-align: middle; /* Adjust alignment as needed */
+}
+
+.hiddenLink {
+    color: #ffffff; /* Change link color */
+
+    text-decoration: none; /* Remove underline */
+}
+
+.pixelnhearth:hover {
+    transform: rotate(360deg);
+    transition: transform 0.5s; /* Add a transition for a smooth effect */
+}
+
+.goken {
+    color: rgb(108, 245, 255);
+
+    width: min-content;
+}
+
+.goken:hover {
+    color: rgb(148, 141, 179);
+}

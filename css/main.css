@@ -33,6 +33,8 @@ label {
     padding-bottom: 3rem;
 
     transition: margin-top .25s ease-in-out;
+
+    width: 60vw;
 }
 
 .main input {
@@ -90,7 +92,7 @@ label {
 }
 
 
-.itemPreview>div, .boughtItems>div {
+.itemsPreviewHeader, .item, .boughtItems>div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -101,17 +103,23 @@ label {
     border-bottom: 1px solid var(--borderColor);
 }
 
+
 .itemPreview .emptyButton {
     background: darkred;
 }
 
 
-
-.itemPreview>div>*, .boughtItems>div>* {
+.itemsPreviewHeader>*, .item>*, .boughtItems>div>* {
     flex: 1;
     width: auto;
     text-align: left;
 }
+
+.itemsPreviewHeader>h2:first-child, .item>p:first-child {
+    flex: 2;
+    margin-right: 2rem;
+}
+
 .boughtItems>div>*:first-child {
     flex: 2;
     margin-right: 3rem;
@@ -195,11 +203,15 @@ header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--borderColor);
+    margin-bottom: 0;
 }
 
-.kvitto h1 {
+.kvitto header h1 {
     text-align: center;
-    margin-bottom: 2.5rem;
+}
+
+.boughtItemsHeader h3 {
+    margin-bottom: 0;
 }
 
 .total {
@@ -251,16 +263,17 @@ header {
     }
 
     .receipts {
-        --backgroundColor: white;
+        --backgroundColor: None;
         --lighterBackgroundColor: white;
         --buttonColor: white;
         --buttonTextColor: black;
         --buttonHoverColor: white;
         --borderColor: #000;
         
-        color: #000;
+        color: #000 !important;
         font-family: Helvetica, sans-serif !important;
     }
+    p {color: #000 !important;}
 
   
 }

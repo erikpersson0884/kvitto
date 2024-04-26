@@ -12,6 +12,19 @@ const addItemAmount = document.getElementById("addItemAmount");
 const addItemButton = document.getElementById("addItemButton");
 
 
+const customSekFormatter = new Intl.NumberFormat('sv-SE', {
+    style: 'currency',
+    currency: 'SEK',
+    minimumFractionDigits: 2, // Ensures at least two decimal places
+    maximumFractionDigits: 2, // Ensures at most two decimal places
+});
+
+function formatCurrency(number) {
+    const formattedValue = customSekFormatter.format(number).replace(',', '.');
+    return formattedValue;
+}
+
+
 let items = [];
 
 if (localStorage.getItem("receiptName")) {
@@ -98,8 +111,8 @@ function updateItemPreview() {
         newItem.innerHTML = `
             <p>${item.name}</p>
             <p>${item.amount}</p>
-            <p>${(item.price * 1).toFixed(2)}</p>
-            <p>${(item.price * item.amount).toFixed(2)}</p>
+            <p>${formatCurrency(item.price)}</p>
+            <p>${formatCurrency(item.price * item.amount)}</p>
         `;
 
         const removeButton = createRemoveButton('Remove', 'Ta bort', () => {
@@ -153,28 +166,28 @@ function createKvitto() {
     boughtItems.classList.add("boughtItems");
 
     const boughtItemsHeader = document.createElement("div");
-    boughtItemsHeader.classList.add("boughtItemsHeader", "translateText");
+    boughtItemsHeader.classList.add("boughtItemsHeader");
 
+    tag = "h3";
     boughtItemsHeader.innerHTML = `
-        <h2 class="translateText" data-english="Item" data-swedish="Vara">Item</h2>
-        <h2 class="translateText" data-english="Amount" data-swedish="Antal">Amount</h2>
-        <h2 class="translateText" data-english="Price" data-swedish="Styckpris">Price</h2>
-        <h2 class="translateText" data-english="Total" data-swedish="Totalt">Total</h2>
+        <${tag} class="translateText" data-english="Item" data-swedish="Vara">Item</${tag}>
+        <${tag} class="translateText" data-english="Amount" data-swedish="Antal">Amount</${tag}>
+        <${tag} class="translateText" data-english="Price" data-swedish="Styckpris">Price</${tag}>
+        <${tag} class="translateText" data-english="Total" data-swedish="Totalt">Total</${tag}>
     `;
-
 
 
     boughtItems.appendChild(boughtItemsHeader);
 
     items.forEach(item => {
         const newItem = document.createElement('div');
-        newItem.classList.add('item', "translateText");
+        newItem.classList.add('item');
         
         newItem.innerHTML = `
-            <p class="translateText" data-english="${item.name}" data-swedish="${item.name}"></p>
-            <p class="translateText" data-english="${item.amount}" data-swedish="${item.amount}"></p>
-            <p class="translateText" data-english="${(item.price * 1).toFixed(2)}" data-swedish="${(item.price * 1).toFixed(2)}"></p>
-            <p class="translateText" data-english="${(item.price * item.amount).toFixed(2)}" data-swedish="${(item.price * item.amount).toFixed(2)}"></p>
+            <p>${item.name}</p>
+            <p>${item.amount}</p>
+            <p>${formatCurrency(item.price * 1)}</p>
+            <p>${formatCurrency(item.price * item.amount)}</p>
         `;
 
         boughtItems.appendChild(newItem);
@@ -182,19 +195,18 @@ function createKvitto() {
 
     kvitto.appendChild(boughtItems);
     let totalPrice = items.reduce((accumulator, item) => accumulator + (item.price * item.amount), 0);
-
     const total = document.createElement('div');
     total.classList.add("total");
     total.innerHTML = `
         <p class="translateText" data-english="Total:" data-swedish="Totalt:">Total:</p>
-        <p>${totalPrice.toFixed(2)} kr</p>
+        <p>${formatCurrency(totalPrice)} kr</p>
     `;
 
 
     kvitto.appendChild(total);
 
 
-    const kvittoFooter = createKvittoFooter();
+    const kvittoFooter = createKvittoFooter(totalPrice);
     kvitto.appendChild(kvittoFooter);
 
     document.getElementById("receipts").innerHTML = '';
@@ -204,7 +216,7 @@ function createKvitto() {
     window.print();
 }
 
-function createKvittoFooter() {
+function createKvittoFooter(totalPrice) {
     const receiptDate = document.getElementById("receiptDate");
     const receiptMoms = document.getElementById("receiptMoms");
 
@@ -223,7 +235,7 @@ function createKvittoFooter() {
     moms = document.createElement('div');
     moms.innerHTML = `
         <p class="translateText" data-english="VAT:" data-swedish="Moms:"></p>
-        <p>${receiptMoms.value}</p>
+        <p>${formatCurrency(receiptMoms.value * 0.01 * totalPrice)}, ${receiptMoms.value}%</p>
     `;
     kvittoFooter.appendChild(moms);
 

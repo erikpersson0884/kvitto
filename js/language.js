@@ -2,14 +2,7 @@
 const languageButton = document.getElementById('languageButton');
 const languageButtonImg = document.getElementById('languageButtonImg');
 
-let currentLanguage;
-
-if (localStorage.getItem('language')) {
-    currentLanguage = localStorage.getItem('language');
-} else {
-    currentLanguage = 'sv';
-}
-
+let currentLanguage = localStorage.getItem('language') || 'sv';
 setLanguage(currentLanguage);
 
 
@@ -25,7 +18,7 @@ function toggleLanguage() {
 function setLanguage(langauge) {
     currentLanguage = langauge;
     localStorage.setItem('language', langauge);
-    languageButtonImg.src = `img/${langauge}.svg`;
+    languageButtonImg.src = `img/${currentLanguage === 'en' ? 'sv' : 'en'}.svg`;
     document.documentElement.lang = langauge;
 
     const translateTexts = document.querySelectorAll('.translateText');
@@ -51,5 +44,7 @@ function setLanguage(langauge) {
                 break;
         }
     });
+
+    
 }
 

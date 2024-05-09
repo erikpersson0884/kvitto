@@ -5,11 +5,12 @@
     font-family: "Kode Mono";
 
 
-    position: absolute;
-    bottom: .4rem;
+    /* position: absolute; */
+    /* bottom: .4rem; */
 
     text-align: center;
     padding-bottom: 1rem;
+    margin-top: 4rem;
 }
 
 .pageFooter img {

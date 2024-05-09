@@ -5,8 +5,12 @@
 
 
 body {
-    justify-content: flex-start;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    justify-content: space-between;
+    padding: 0;
+    height: 100vh;
+
 }
 
 label {
@@ -72,7 +76,7 @@ label {
     gap: 1rem;
 }
 
-.infoDiv>div {
+.infoDiv div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -80,6 +84,9 @@ label {
 
     width: 100%;
 }
+
+
+
 
 
 .itemPreview {

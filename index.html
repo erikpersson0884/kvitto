@@ -62,10 +62,23 @@
                     <label for="receiptMoms" class="translateText" data-english="Moms (%):" data-swedish="Moms (%):">Moms (%):</label>
                     <input type="number" id="receiptMoms" class="darkInput translateInput" data-english="Moms" data-swedish="Moms" placeholder="Moms">
                 </div>
+                <div class="treasurerName">
+                    <label for="receiptTreasurer" class="translateText" data-english="Treasurer:" data-swedish="Kassör:">Kassör:</label>
+                    <input type="text" id="treasurerName" class="darkInput translateInput" placeholder="Kassör" data-english="Treasurer" data-swedish="Kassör">
+                </div>
+                <div>
+                    <label for="receiptComment" class="translateText" data-english="Buyer:" data-swedish="Inköpare:">Kommentar:</label>
+                    <input type="text" id="buyerName" class="darkInput translateInput" placeholder="Kommentar" data-english="Buyer" data-swedish="Inköpare">
+                </div>
             </div>
             
-            <div id="createKvittoButton" class="createKvittoButton button translateText" data-english="Create receipt" data-swedish="Skapa kvitto">
-                CREATE KVITTO
+            <div class="actionButtonGroup">
+                <div id="createKvittoButton" class="createKvittoButton button translateText" data-english="Create receipt" data-swedish="Skapa kvitto">
+                    CREATE KVITTO
+                </div>
+                <div id="removeInfoButton" class="removeInfoButton button translateText" data-english="REMOVE INFO" data-swedish="TA BORT INFO">
+                    REMOVE INFO
+                </div>
             </div>
         </header>
 
@@ -75,7 +88,7 @@
 
 
         <div id="addItemDiv" class="addItemDiv">
-            <input type="text" id="addItemName" class="darkInput translateInput" data-english="Item name" data-swedish="Namn" placeholder="Item name">
+            <input type="text" id="addItemName" class="darkInput translateInput" data-english="Item name" data-swedish="Vara" placeholder="Item name">
             <input type="number" id="addItemPrice" class="darkInput translateInput" data-english="Price" data-swedish="Pris" placeholder="Price">
             <input type="number" id="addItemAmount" class="darkInput translateInput" data-english="Amount" data-swedish="Antal" placeholder="Amount">
 

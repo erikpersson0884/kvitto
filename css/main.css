@@ -60,12 +60,29 @@ label {
     border-radius: 1rem 1rem 0 0;
 }
 
+.actionButtonGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: .8rem 0;
+}
+
 .createKvittoButton {
     text-transform: uppercase;
     
     width: max-content;
     height: 7rem;
     padding: 1rem;
+}
+
+.removeInfoButton {
+    background: var(--removeButtonColor);
+}
+
+.removeInfoButton:hover {
+    background: var(--removeButtonHoverColor);
 }
 
 .infoDiv {
@@ -248,6 +265,38 @@ header {
 .kvittoFooter>*:first-child {
     border-top: 1px dashed var(--borderColor);
 }
+
+
+
+.signatureSection {
+    background: navy;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10%;
+
+    width: 100%;
+}
+
+.signatureSection>* {
+    margin-top: 7rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 4rem;
+
+    width: 40%;
+}
+
+.signatureSection .explanationText {
+    padding-top: .4rem;
+
+    border-top: var(--borderColor) 1px solid;
+}
+
+
+
 
 @media screen and (max-width: 1200px) {
     .main {

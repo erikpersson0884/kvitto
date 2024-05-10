@@ -2,9 +2,13 @@ const receiptName = document.getElementById("receiptName");
 const receiptDate = document.getElementById("receiptDate");
 const receiptMoms = document.getElementById("receiptMoms");
 
+const treasurerName = document.getElementById("treasurerName");
+const buyerName = document.getElementById("buyerName");
+
 const itemsDiv = document.getElementById('itemsDiv');
 const addItemDiv = document.getElementById("addItemDiv");
 const createKvittoButton = document.getElementById("createKvittoButton");
+const removeInfoButton = document.getElementById("removeInfoButton");
 
 const addItemName = document.getElementById("addItemName");
 const addItemPrice = document.getElementById("addItemPrice");
@@ -27,22 +31,19 @@ function formatCurrency(number) {
 
 let items = [];
 
-if (localStorage.getItem("receiptName")) {
-    receiptName.value = localStorage.getItem("receiptName");
-}
+receiptName.value = localStorage.getItem("receiptName") || '';
+receiptDate.value = localStorage.getItem("receiptDate") || '';
+receiptMoms.value = localStorage.getItem("receiptMoms") || 25;
 
-if (localStorage.getItem("receiptDate")) {
-    receiptDate.value = localStorage.getItem("receiptDate");
-}
-
-if (localStorage.getItem("receiptMoms")) {
-    receiptMoms.value = localStorage.getItem("receiptMoms");
-}
+treasurerName.value = localStorage.getItem("treasurerName") || '';
+buyerName.value = localStorage.getItem("buyerName") || '';
 
 if (localStorage.getItem("items")) {
     items = JSON.parse(localStorage.getItem("items"));
     updateItemPreview();
 }
+
+
 
 
 receiptName.oninput = () => {
@@ -56,6 +57,24 @@ receiptDate.oninput = () => {
 receiptMoms.oninput = () => {
     localStorage.setItem("receiptMoms", receiptMoms.value);
 }
+
+treasurerName.oninput = () => {
+    localStorage.setItem("treasurerName", treasurerName.value);
+}
+
+buyerName.oninput = () => {
+    localStorage.setItem("buyerName", buyerName.value);
+}
+
+removeInfoButton.onclick = () => {
+    ["receiptName", "receiptDate", "receiptMoms", "treasurerName", "buyerName"].forEach(item => localStorage.removeItem(item));
+    receiptName.value = '';
+    receiptDate.value = '';
+    receiptMoms.value = 25;
+    treasurerName.value = '';
+    buyerName.value = '';
+}
+
 
 addItemButton.onclick = addItem;
 
@@ -205,9 +224,11 @@ function createKvitto() {
 
     kvitto.appendChild(total);
 
-
     const kvittoFooter = createKvittoFooter(totalPrice);
     kvitto.appendChild(kvittoFooter);
+
+    const signatureSection = createSignatureSection();
+    kvitto.appendChild(signatureSection);
 
     document.getElementById("receipts").innerHTML = '';
     document.getElementById("receipts").appendChild(kvitto);
@@ -215,6 +236,7 @@ function createKvitto() {
     setLanguage(localStorage.getItem('language'));
     window.print();
 }
+
 
 function createKvittoFooter(totalPrice) {
     const receiptDate = document.getElementById("receiptDate");
@@ -239,5 +261,34 @@ function createKvittoFooter(totalPrice) {
     `;
     kvittoFooter.appendChild(moms);
 
+
     return kvittoFooter;
 }
+
+function createSignatureSection() {
+    const signatureSection = document.createElement('section');
+    signatureSection.classList.add("signatureSection");
+    signatureSection.innerHTML = `
+        <div>
+            <p class="translateText explanationText" data-english="Treasurer signature" data-swedish="Kassör signatur">Treasurer signature</p>
+            <div>
+                <p>${treasurerName.value}</p>
+                <p class="translateText explanationText" data-english="Treasurer, Name clarification" data-swedish="Kassör, Namnförtydligande"></p>
+            </div>
+        </div>
+
+        <div>
+            <p class="translateText explanationText" data-english="Buyer signature" data-swedish="Inköpare signatur">Buyer signature</p>
+            <div>
+                <p>${buyerName.value}</p>
+                <p class="translateText explanationText" data-english="Buyer, Name clarification" data-swedish="Inköpare, Namnförtydligande">Treasurer, Name clarification</p>
+            </div>
+        </div>
+    `;
+
+
+    return signatureSection;
+
+}
+
+

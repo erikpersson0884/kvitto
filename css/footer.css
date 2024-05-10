@@ -1,12 +1,8 @@
 .pageFooter {
-    color: #fff;
+    color: var(--textColor);
 
     font-size: 1.3rem;
     font-family: "Kode Mono";
-
-
-    /* position: absolute; */
-    /* bottom: .4rem; */
 
     text-align: center;
     padding-bottom: 1rem;
@@ -21,7 +17,7 @@
 }
 
 .hiddenLink {
-    color: #ffffff; /* Change link color */
+    color: var(--textColor); /* Change link color */
 
     text-decoration: none; /* Remove underline */
 }
